@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "./provision", "/home/vagrant/provision"
-  config.vm.synced_folder "../src", "/home/vagrant/octoprint-stat-o-matic"
+  config.vm.synced_folder "../", "/home/vagrant/octoprint_stat-o-matic"
 
 
   # Provider-specific configuration so you can fine-tune various
