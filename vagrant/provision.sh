@@ -58,6 +58,9 @@ timeout 60 octoprint serve
 cd ~/.octoprint
 cat ~/provision/virtual-printer-config.yaml >> config.yaml
 
+# Install Stat'o'matic plugin in dev mode.
+cd ~/octoprint-stat-o-matic && octoprint dev plugin:install
+
 # ZSH
 # Install oh-my-zsh
 sudo apt-get -y install zsh
