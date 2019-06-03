@@ -33,7 +33,7 @@ $(function() {
         // gets called _after_ the settings have been retrieved from the OctoPrint backend and thus
         // the SettingsViewModel been properly populated.
         self.onBeforeBinding = function () {
-            self.newUrl(self.settings.settings.plugins.helloworld.url());
+            self.newUrl(self.settings.settings.plugins.statomatic.url());
             self.goToUrl();
         }
     }
@@ -46,7 +46,7 @@ $(function() {
         construct: StatomaticViewModel,
         // ViewModels your plugin depends on, e.g. loginStateViewModel, settingsViewModel, ...
         dependencies: [ /* "loginStateViewModel", "settingsViewModel" */
-            "SettingsViewModel"
+            "settingsViewModel"
         ],
         // Elements to bind to, e.g. #settings_plugin_stat-o-matic, #tab_plugin_stat-o-matic, ...
         elements: [ /* ... */
