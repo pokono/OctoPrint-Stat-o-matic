@@ -2,6 +2,8 @@
 
 **TODO:** Describe what your plugin does.
 
+[![Build Status](https://badge.buildkite.com/cb272b15c54e152682f65c8541cc00496361a74793dd8587b2.svg)](https://buildkite.com/pokono/statomatic-tests)
+
 ## Setup
 
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
