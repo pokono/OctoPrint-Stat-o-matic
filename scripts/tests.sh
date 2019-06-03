@@ -7,4 +7,4 @@ virtualenv venv
 source ./venv/bin/activate
 pip install --upgrade pip
 pip install -e .[develop,plugins]
-cd && source ./dependencies/OctoPrint/venv/bin/activate && nosetests
+source ./venv/bin/activate && cd && nosetests
