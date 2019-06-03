@@ -1,8 +1,3 @@
 steps:
-  - label: ':rocket: Octoprint'
-    command: 'scripts/octoprint.sh'
-
-  - wait
-
   - label: ':hammer: Tests'
     command: 'scripts/tests.sh'
