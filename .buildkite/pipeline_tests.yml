@@ -2,5 +2,7 @@ steps:
   - label: ':rocket: Install'
     command: 'scripts/install.sh'
 
+  - wait
+
   - label: ':hammer: Tests'
     command: 'scripts/tests.sh'
