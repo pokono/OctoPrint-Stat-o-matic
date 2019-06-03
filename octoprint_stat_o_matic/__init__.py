@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 
-class Stat_o_maticPlugin(octoprint.plugin.SettingsPlugin,
+class StatomaticPlugin(octoprint.plugin.SettingsPlugin,
                          octoprint.plugin.AssetPlugin,
                          octoprint.plugin.TemplatePlugin):
 
@@ -63,7 +63,7 @@ __plugin_name__ = "Stat-o-matic Plugin"
 
 def __plugin_load__():
 	global __plugin_implementation__
-	__plugin_implementation__ = Stat_o_maticPlugin()
+	__plugin_implementation__ = StatomaticPlugin()
 
 	global __plugin_hooks__
 	__plugin_hooks__ = {
