@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cd ./ && nosetests
+cd ./ && pip install . && nosetests
