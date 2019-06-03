@@ -7,4 +7,4 @@ virtualenv venv
 source ./venv/bin/activate
 pip install --upgrade pip
 pip install -e .[develop,plugins]
-source ./venv/bin/activate && cd && nosetests
+cd && nosetests
