@@ -5,7 +5,7 @@
  * License: AGPLv3
  */
 $(function() {
-    function Stat-o-maticViewModel(parameters) {
+    function StatomaticViewModel(parameters) {
         var self = this;
 
         // assign the injected parameters, e.g.:
