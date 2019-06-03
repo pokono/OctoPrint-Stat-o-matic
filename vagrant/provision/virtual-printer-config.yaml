@@ -1,3 +1,6 @@
 devel:
   virtualPrinter:
     enabled: true
+  stylesheet: css
+  webassets:
+    bundle: false

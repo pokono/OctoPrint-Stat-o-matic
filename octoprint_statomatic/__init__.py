@@ -53,7 +53,7 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 		return dict(
 			js=["js/statomatic.js"],
 			css=["css/statomatic.css"],
-			less=["less/statomatic.less"]
+			less=["css/statomatic.less"]
 		)
 
 	##~~ Softwareupdate hook

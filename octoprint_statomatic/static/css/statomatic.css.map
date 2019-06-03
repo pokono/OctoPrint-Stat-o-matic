@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [
+    "statomatic.less"
+  ],
+  "names": [],
+  "mappings": "AACA,sBAAuB;EACrB,WAAA;EACA,aAAA;EACA,yBAAA",
+  "file": "statomatic.css"
+}
