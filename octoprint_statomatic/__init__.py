@@ -20,6 +20,14 @@ class StatomaticPlugin(octoprint.plugin.SettingsPlugin,
 	def get_settings_defaults(self):
 		return dict(
 			# put your plugin's default settings here
+			url="https://ivancarosati.com"
+		)
+
+	##~~ TemplatePlugin mixin
+
+	def get_template_vars(self):
+		return dict(
+			url=self._settings.get(["url"])
 		)
 
 	##~~ AssetPlugin mixin
@@ -28,9 +36,9 @@ class StatomaticPlugin(octoprint.plugin.SettingsPlugin,
 		# Define your plugin's asset files to automatically include in the
 		# core UI here.
 		return dict(
-			js=["js/stat-o-matic.js"],
-			css=["css/stat-o-matic.css"],
-			less=["less/stat-o-matic.less"]
+			js=["js/statomatic.js"],
+			css=["css/statomatic.css"],
+			less=["less/statomatic.less"]
 		)
 
 	##~~ Softwareupdate hook
