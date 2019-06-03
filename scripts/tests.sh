@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 pip install nose
-nosetests
-echo 'Hello!!!!!'
+cd ../octoprint_statomatic && nosetests
