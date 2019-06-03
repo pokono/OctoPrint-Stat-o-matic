@@ -1,3 +1,3 @@
 steps:
   -label: ':hammer: Tests'
-  -command: 'scripts/tests.sh'
+    command: 'scripts/tests.sh'
