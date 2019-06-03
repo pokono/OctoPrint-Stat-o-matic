@@ -88,5 +88,6 @@ alias la='ls -a'
 # OctoPrint Dev Aliases
 alias octoprint-env-activate="source ~/OctoPrint/venv/bin/activate"
 alias octoprint-serve="source ~/OctoPrint/venv/bin/activate && octoprint serve"
+alias octoprint-plugin-install="source ~/OctoPrint/venv/bin/activate && cd ~/octoprint-stat-o-matic && octoprint dev plugin:install"
 
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

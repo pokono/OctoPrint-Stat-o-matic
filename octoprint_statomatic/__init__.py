@@ -11,16 +11,39 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 
-class Stat_o_maticPlugin(octoprint.plugin.SettingsPlugin,
-                         octoprint.plugin.AssetPlugin,
-                         octoprint.plugin.TemplatePlugin):
+
+class StatomaticPlugin(octoprint.plugin.StartupPlugin,
+					   octoprint.plugin.SettingsPlugin,
+					   octoprint.plugin.AssetPlugin,
+					   octoprint.plugin.TemplatePlugin):
 
 	##~~ SettingsPlugin mixin
 
 	def get_settings_defaults(self):
 		return dict(
 			# put your plugin's default settings here
+			url="https://ivancarosati.com"
 		)
+
+	##~~ TemplatePlugin mixin
+
+	# def get_template_vars(self):
+	# 	return dict(
+	# 		url=self._settings.get(["url"])
+	# 	)\
+
+	# The reason for this is that OctoPrint by default assumes that you’ll want to
+	# bind your own view models to your templates and hence “unbinds” the included
+	# templates from the templates that are in place at the injected location already.
+	# In order to tell OctoPrint to please don’t do this here (since we do want to use
+	# both NavigationViewModel and SettingsViewModel), we’ll need to override the default
+	# template configuration using the get_template_configs method.
+	# We’ll tell OctoPrint to use no custom bindings for both our navbar and our settings plugin.
+	def get_template_configs(self):
+		return [
+			dict(type="navbar", custom_bindings=False),
+			dict(type="settings", custom_bindings=False)
+		]
 
 	##~~ AssetPlugin mixin
 
@@ -28,9 +51,9 @@ class Stat_o_maticPlugin(octoprint.plugin.SettingsPlugin,
 		# Define your plugin's asset files to automatically include in the
 		# core UI here.
 		return dict(
-			js=["js/stat-o-matic.js"],
-			css=["css/stat-o-matic.css"],
-			less=["less/stat-o-matic.less"]
+			js=["js/statomatic.js"],
+			css=["css/statomatic.css"],
+			less=["css/statomatic.less"]
 		)
 
 	##~~ Softwareupdate hook
@@ -63,7 +86,7 @@ __plugin_name__ = "Stat-o-matic Plugin"
 
 def __plugin_load__():
 	global __plugin_implementation__
-	__plugin_implementation__ = Stat_o_maticPlugin()
+	__plugin_implementation__ = StatomaticPlugin()
 
 	global __plugin_hooks__
 	__plugin_hooks__ = {
