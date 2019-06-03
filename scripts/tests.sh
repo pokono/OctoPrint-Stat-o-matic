@@ -9,5 +9,5 @@ pip install --upgrade pip
 pip install -e .[develop,plugins]
 cd ..
 cd ..
-echo $PWD
+#echo $PWD
 nosetests
