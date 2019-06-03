@@ -25,10 +25,23 @@ class StatomaticPlugin(octoprint.plugin.SettingsPlugin,
 
 	##~~ TemplatePlugin mixin
 
-	def get_template_vars(self):
-		return dict(
-			url=self._settings.get(["url"])
-		)
+	# def get_template_vars(self):
+	# 	return dict(
+	# 		url=self._settings.get(["url"])
+	# 	)\
+
+	# The reason for this is that OctoPrint by default assumes that you’ll want to
+	# bind your own view models to your templates and hence “unbinds” the included
+	# templates from the templates that are in place at the injected location already.
+	# In order to tell OctoPrint to please don’t do this here (since we do want to use
+	# both NavigationViewModel and SettingsViewModel), we’ll need to override the default
+	# template configuration using the get_template_configs method.
+	# We’ll tell OctoPrint to use no custom bindings for both our navbar and our settings plugin.
+	def get_template_configs(self):
+		return [
+			dict(type="navbar", custom_bindings=False),
+			dict(type="settings", custom_bindings=False)
+		]
 
 	##~~ AssetPlugin mixin
 
