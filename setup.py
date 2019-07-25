@@ -35,7 +35,7 @@ plugin_license = "AGPLv3"
 # Any additional requirements besides OctoPrint should be listed here
 plugin_requires = [
 	"nose",
-	"SQLAlchemy>=1.3.16,<1.4",
+	"SQLAlchemy>=1.3.6,<1.4",
 	"alembic>=1.0.11,<1.1"
 ]
 
