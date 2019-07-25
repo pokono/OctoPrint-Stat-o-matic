@@ -10,6 +10,7 @@ from __future__ import absolute_import
 # Take a look at the documentation on what other plugin mixins are available.
 
 import octoprint.plugin
+import os
 
 from alembic.config import Config
 from alembic import command
@@ -22,7 +23,14 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 					   octoprint.plugin.EventHandlerPlugin):
 
 	def __init__(self):
+		self.something = None
+
+
+	def initialize(self):
+		db_schema = 'sqlite:///'
+		db_path = os.path.join(self.get_plugin_data_folder(), 'stat-o-matic.sqlite')
 		alembic_cfg = Config("./octoprint_statomatic/alembic.ini")
+		alembic_cfg.set_main_option('sqlalchemy.url', db_schema + db_path)
 		command.upgrade(alembic_cfg, "head")
 
 	##~~ SettingsPlugin mixin
