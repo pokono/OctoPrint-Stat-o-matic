@@ -33,7 +33,9 @@ plugin_url = "https://github.com/pokono/OctoPrint-Stat-o-matic"
 plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
-plugin_requires = ["nose==dev"]
+plugin_requires = [
+	"nose"
+]
 
 ### --------------------------------------------------------------------------------------------------------------------
 ### More advanced options that you usually shouldn't have to touch follow after this point
