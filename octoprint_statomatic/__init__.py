@@ -11,11 +11,19 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 
+from alembic.config import Config
+from alembic import command
+
 
 class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 					   octoprint.plugin.SettingsPlugin,
 					   octoprint.plugin.AssetPlugin,
-					   octoprint.plugin.TemplatePlugin):
+					   octoprint.plugin.TemplatePlugin,
+					   octoprint.plugin.EventHandlerPlugin):
+
+	def __init__(self):
+		# alembic_cfg = Config(self.get_plugin_data_folder() + "alembic.ini")
+		# command.upgrade(alembic_cfg, "head")
 
 	##~~ SettingsPlugin mixin
 
