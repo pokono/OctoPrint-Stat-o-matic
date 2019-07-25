@@ -9,5 +9,7 @@ pip install --upgrade pip
 pip install -e .[develop,plugins]
 cd ..
 cd ..
+cd octoprint-stat-o-matic && octoprint dev plugin:install
+cd ..
 #echo $PWD
 nosetests
