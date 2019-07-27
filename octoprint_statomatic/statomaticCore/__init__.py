@@ -5,7 +5,9 @@ from sqlalchemy import (
 	Column,
 	Integer,
 	String,
-	Float
+	Float,
+	func,
+	label
 )
 
 

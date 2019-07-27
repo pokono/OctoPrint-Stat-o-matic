@@ -1,3 +1,8 @@
+# Stat-O-Matic
+.data/*
+!./data/README.md
+
+# OS
 *.pyc
 *.swp
 build
@@ -5,8 +10,6 @@ dist
 *.egg*
 .DS_Store
 *.zip
-
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

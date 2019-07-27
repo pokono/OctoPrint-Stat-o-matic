@@ -28,9 +28,10 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 
 	def initialize(self):
 		db_schema = 'sqlite:///'
-		db_path = os.path.join(self.get_plugin_data_folder(), 'stat-o-matic.sqlite')
+		db_path = os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
 		alembic_cfg = Config("./octoprint_statomatic/alembic.ini")
-		alembic_cfg.set_main_option('sqlalchemy.url', db_schema + db_path)
+		alembic_cfg.set_main_option("script_location", "./octoprint_statomatic/alembic")
+		alembic_cfg.set_main_option("sqlalchemy.url", db_schema + db_path)
 		command.upgrade(alembic_cfg, "head")
 
 	##~~ SettingsPlugin mixin

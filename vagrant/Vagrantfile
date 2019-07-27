@@ -49,6 +49,7 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "./provision", "/home/vagrant/provision"
   config.vm.synced_folder "../", "/home/vagrant/octoprint-stat-o-matic"
+  config.vm.synced_folder "../.data", "/home/vagrant/.octoprint/data/statomatic"
 
 
   # Provider-specific configuration so you can fine-tune various
@@ -70,7 +71,7 @@ Vagrant.configure("2") do |config|
     prl.cpus = 1
     prl.update_guest_tools = false
     prl.check_guest_tools = true
-	prl.optimize_power_consumption = true
+    prl.optimize_power_consumption = true
     # prl.customize ["set", :id, "--longer-battery-life", "off"]
   end
 

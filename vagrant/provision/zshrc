@@ -53,6 +53,8 @@ plugins=(git history sudo colorize github vagrant pip zsh-syntax-highlighting)
 
 # User configuration
 
+setopt completealiases
+
 #export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 #export MANPATH="/usr/local/man:$MANPATH"
 
