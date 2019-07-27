@@ -1,3 +1,8 @@
+from .database import Database
+from .models import (
+	User
+)
+
 class StatomaticCore(object):
 	DIALECT = "sqlite"
 
@@ -8,3 +13,7 @@ class StatomaticCore(object):
 		# self.db_metadata = self.db_connection.MetaData()
 		print("StatomaticCore init.")
 		print(config)
+		self._database = Database(config)
+
+	def initialize(self):
+		self._database.initialize()

@@ -12,9 +12,6 @@ from __future__ import absolute_import
 import octoprint.plugin
 import os
 
-from alembic.config import Config
-from alembic import command
-
 from .statomatic_core import (
 	StatomaticCore
 )
@@ -27,25 +24,25 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 					   octoprint.plugin.EventHandlerPlugin):
 
 	def __init__(self):
-		self.config = None
-		self.statomaticCore = None
-		self.database = None
+		self._config = None
+		self._statomatic_core = None
 
 
 	def initialize(self):
-		self.config = dict([
-			("database.schema", "sqlite:///"),
-			("database.path", os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")),
-			("alembic.config.path", "./octoprint_statomatic/alembic.ini"),
-			("alembic.config.scriptlocation", "./octoprint_statomatic/alembic")
-		])
+		self._config = {
+			"database.schema": "sqlite:///",
+			"database.path": os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite"),
+			"alembic.config.path": "./octoprint_statomatic/alembic.ini",
+			"alembic.config.scriptlocation": "./octoprint_statomatic/alembic",
+		}
 		# db_schema = 'sqlite:///'
 		# db_path = os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
 		# alembic_cfg = Config("./octoprint_statomatic/alembic.ini")
 		# alembic_cfg.set_main_option("script_location", "./octoprint_statomatic/alembic")
 		# alembic_cfg.set_main_option("sqlalchemy.url", db_schema + db_path)
 		# command.upgrade(alembic_cfg, "head")
-		self.statomaticCore = StatomaticCore(self.config)
+		self._statomatic_core = StatomaticCore(self._config)
+		self._statomatic_core.initialize()
 
 	# self.database = Database.initialize(self.config)
 

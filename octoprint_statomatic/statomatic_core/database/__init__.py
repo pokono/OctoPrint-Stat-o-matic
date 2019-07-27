@@ -1,4 +1,5 @@
-import sqlalchemy
+from alembic.config import Config
+from alembic import command
 from sqlalchemy import (
 	create_engine,
 	ForeignKey,
@@ -6,20 +7,25 @@ from sqlalchemy import (
 	Integer,
 	String,
 	Float,
-	func,
-	label
+	func
 )
 
 
 class Database(object):
 
 	def __init__(self, config):
-		self.config = config
-		self.db_engine = None
-		self.db_connection = None
-		self.db_metadata = None
+		db_path = config.get("database.schema") + config.get("database.path")
+		alembic_cfg_path = config.get("alembic.config.path")
+		alembic_cfg_scriptlocation = config.get("alembic.config.scriptlocation")
+		alembic_cfg = Config(alembic_cfg_path)
+		alembic_cfg.set_main_option("script_location", alembic_cfg_scriptlocation)
+		alembic_cfg.set_main_option("sqlalchemy.url", db_path)
+		command.upgrade(alembic_cfg, "head")
 
-	def initialize(self, config):
-		self.db_engine = create_engine("sqlite:///" + config.get("database.path"))
-		self.db_connection = self.db_engine.connect()
-		self.db_metadata = self.db_connection.MetaData()
+		self._db_engine = create_engine(db_path)
+		self._db_connection = None
+		self._db_metadata = None
+
+	def initialize(self):
+		self._db_connection = self._db_engine.connect()
+		self._db_metadata = self._db_connection.MetaData()

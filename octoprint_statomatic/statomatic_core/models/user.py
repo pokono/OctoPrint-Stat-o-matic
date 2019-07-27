@@ -12,9 +12,7 @@ from sqlalchemy.orm import (
 	relationship,
 	backref
 )
-from sqlalchemy.ext.declarative inport
-
-(
+from sqlalchemy.ext.declarative import (
 	declarative_base
 )
 
