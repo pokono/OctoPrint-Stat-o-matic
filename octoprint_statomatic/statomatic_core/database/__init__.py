@@ -31,8 +31,6 @@ class Database(object):
 		command.upgrade(alembic_cfg, "head")
 
 		self._db_engine = create_engine(db_path)
-		self._db_connection = None
-		self._db_metadata = None
 		self._db_session = None
 
 
