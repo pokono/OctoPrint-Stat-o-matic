@@ -1,7 +1,5 @@
 from .database import Database
-from .models import (
-	User
-)
+
 
 class StatomaticCore(object):
 	DIALECT = "sqlite"
