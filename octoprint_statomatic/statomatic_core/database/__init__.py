@@ -55,7 +55,8 @@ class Database(object):
 		session.add(pokono)
 		print("session add")
 		session.commit()
-		print("pokono: " + pokono.id)
+		print("pokono: ")
+		print(pokono.id)
 		session.close()
 		print("New user committed.")
 
