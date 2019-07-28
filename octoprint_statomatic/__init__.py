@@ -12,7 +12,6 @@ from __future__ import absolute_import
 import os
 
 import octoprint.plugin
-from octoprint.printer import PrinterInterface
 from octoprint.events import Events
 from .statomatic_core import StatomaticCore
 
@@ -30,10 +29,6 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 
 	def initialize(self):
 		self._config = {
-			"database.schema": "sqlite:///",
-			"database.path": os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite"),
-			"alembic.config.path": "./octoprint_statomatic/alembic.ini",
-			"alembic.config.scriptlocation": "./octoprint_statomatic/alembic",
 			"database": {
 				'sqlite': {
 					'driver': 'sqlite',
@@ -42,32 +37,17 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 			},
 			"database.migrations_path": "./octoprint_statomatic/migrations"
 		}
-		# db_schema = 'sqlite:///'
-		# db_path = os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
-		# alembic_cfg = Config("./octoprint_statomatic/alembic.ini")
-		# alembic_cfg.set_main_option("script_location", "./octoprint_statomatic/alembic")
-		# alembic_cfg.set_main_option("sqlalchemy.url", db_schema + db_path)
-		# command.upgrade(alembic_cfg, "head")
+
 		self._statomatic_core = StatomaticCore(self._config, self._logger)
 		self._statomatic_core.initialize()
-		print(self._user_manager.enabled)
-		print (self._user_manager.getAllUsers())
 
-	# self.database = Database.initialize(self.config)
+	# print(self._user_manager.enabled)
+	# print (self._user_manager.getAllUsers())
+
 
 	##~~ EventHandlerPlugin mixin
 
 	def on_event(self, event, payload):
-		# listening_events = {
-		# 	Events.CONNECTED: self._statomatic_core.event_connected(payload, self._printer.get_current_connection()),
-		# 	Events.DISCONNECTED: self._statomatic_core.event_disconnected(),
-		# 	Events.ERROR: self._statomatic_core.event_error(payload)
-		# }
-		# try:
-		# 	listening_events[event]()
-		# except:
-		# 	print (event)
-		# 	pass
 		if event == Events.CONNECTED:
 			connection = self._printer.get_current_connection()
 			self._statomatic_core.event_connected(payload, connection)
