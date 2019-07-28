@@ -43,6 +43,9 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 		# command.upgrade(alembic_cfg, "head")
 		self._statomatic_core = StatomaticCore(self._config)
 		self._statomatic_core.initialize()
+		print(self._user_manager.enabled)
+		print (self._app_session_manager._sessions)
+		print (self._user_manager.getAllUsers())
 
 	# self.database = Database.initialize(self.config)
 
