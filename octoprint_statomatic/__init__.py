@@ -34,6 +34,13 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 			"database.path": os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite"),
 			"alembic.config.path": "./octoprint_statomatic/alembic.ini",
 			"alembic.config.scriptlocation": "./octoprint_statomatic/alembic",
+			"database": {
+				'sqlite': {
+					'driver': 'sqlite',
+					'database': os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
+				}
+			},
+			"database.migrations_path": "./octoprint_statomatic/migrations"
 		}
 		# db_schema = 'sqlite:///'
 		# db_path = os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
