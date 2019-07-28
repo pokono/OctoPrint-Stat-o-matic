@@ -9,12 +9,12 @@ from __future__ import absolute_import
 #
 # Take a look at the documentation on what other plugin mixins are available.
 
-import octoprint.plugin
 import os
 
-from .statomatic_core import (
-	StatomaticCore
-)
+import octoprint.plugin
+from octoprint.printer import PrinterInterface
+from octoprint.events import Events
+from .statomatic_core import StatomaticCore
 
 
 class StatomaticPlugin(octoprint.plugin.StartupPlugin,
@@ -41,13 +41,35 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 		# alembic_cfg.set_main_option("script_location", "./octoprint_statomatic/alembic")
 		# alembic_cfg.set_main_option("sqlalchemy.url", db_schema + db_path)
 		# command.upgrade(alembic_cfg, "head")
-		self._statomatic_core = StatomaticCore(self._config)
+		self._statomatic_core = StatomaticCore(self._config, self._logger)
 		self._statomatic_core.initialize()
 		print(self._user_manager.enabled)
-		print (self._app_session_manager._sessions)
 		print (self._user_manager.getAllUsers())
 
 	# self.database = Database.initialize(self.config)
+
+	##~~ EventHandlerPlugin mixin
+
+	def on_event(self, event, payload):
+		# listening_events = {
+		# 	Events.CONNECTED: self._statomatic_core.event_connected(payload, self._printer.get_current_connection()),
+		# 	Events.DISCONNECTED: self._statomatic_core.event_disconnected(),
+		# 	Events.ERROR: self._statomatic_core.event_error(payload)
+		# }
+		# try:
+		# 	listening_events[event]()
+		# except:
+		# 	print (event)
+		# 	pass
+		if event == Events.CONNECTED:
+			connection = self._printer.get_current_connection()
+			self._statomatic_core.event_connected(payload, connection)
+
+		elif event == Events.DISCONNECTED:
+			self._statomatic_core.event_disconnected()
+
+		elif event == Events.ERROR:
+			self._statomatic_core.event_error(payload)
 
 
 	##~~ SettingsPlugin mixin
