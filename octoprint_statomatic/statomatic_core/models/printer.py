@@ -1,4 +1,3 @@
-
 from sqlalchemy import (
 	Column,
 	DateTime,
@@ -13,7 +12,9 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class User(Base):
-	__tablename__ = "users"
+class Printer(Base):
+	__tablename__ = "printers"
 	id = Column(Integer, primary_key=True)
+	identifier = Column(String, unique=True)
 	name = Column(String)
+	model = Column(String)

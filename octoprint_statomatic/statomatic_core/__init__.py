@@ -28,6 +28,7 @@ class StatomaticCore(object):
 		# self._logger.debug("Printer connected - {printer_profile}").format(printer_profile=dict(self._printer_profile))
 		print (payload)
 		print(self._printer_profile)
+		self._database.store_printer(self._printer_profile)
 		pass
 
 	def event_disconnected(self):

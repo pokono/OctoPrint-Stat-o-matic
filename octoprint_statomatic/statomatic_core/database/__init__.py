@@ -16,8 +16,10 @@ from sqlalchemy.orm import (
 from sqlalchemy.ext.declarative import declarative_base
 
 from ..models.user import User
+from ..models.printer import Printer
 
 Base = declarative_base()
+
 
 class Database(object):
 
@@ -57,6 +59,18 @@ class Database(object):
 		print(pokono.id)
 		session.close()
 		print("New user committed.")
+
+	def store_printer(self, printer_profile):
+		if printer_profile is None:
+			return
+
+		session = self.create_new_session()
+		printer = Printer(indentifier=printer_profile["id"],
+						  name=printer_profile["name"],
+						  model=printer_profile["model"])
+		session.add(printer)
+		session.commit()
+
 
 	# Utilities - Create a new database session.
 	def create_new_session(self):
