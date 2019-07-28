@@ -34,7 +34,8 @@ plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
 plugin_requires = [
-	"nose"
+	"nose",
+	"orator>=0.9,<1.0"
 ]
 
 ### --------------------------------------------------------------------------------------------------------------------

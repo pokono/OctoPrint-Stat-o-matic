@@ -53,6 +53,8 @@ plugins=(git history sudo colorize github vagrant pip zsh-syntax-highlighting)
 
 # User configuration
 
+setopt completealiases
+
 #export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 #export MANPATH="/usr/local/man:$MANPATH"
 
@@ -86,8 +88,10 @@ alias ll='ls -l'
 alias la='ls -a'
 
 # OctoPrint Dev Aliases
-alias octoprint-env-activate="source ~/OctoPrint/venv/bin/activate"
-alias octoprint-serve="source ~/OctoPrint/venv/bin/activate && octoprint serve"
-alias octoprint-plugin-install="source ~/OctoPrint/venv/bin/activate && cd ~/octoprint-stat-o-matic && octoprint dev plugin:install"
+alias octo-env="source ~/OctoPrint/venv/bin/activate"
+alias octo-serve="source ~/OctoPrint/venv/bin/activate && octoprint serve"
+alias octo-refresh="source ~/OctoPrint/venv/bin/activate && cd ~/octoprint-stat-o-matic && octoprint dev plugin:install && octoprint serve"
+alias octo-plugin-install="source ~/OctoPrint/venv/bin/activate && cd ~/octoprint-stat-o-matic && octoprint dev plugin:install"
+
 
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -44,6 +44,7 @@ sudo sed -i "s/^user www-data/user vagrant/" /etc/nginx/nginx.conf
 sudo service nginx restart
 
 # Setup OctoPrint.
+sudo chown -R vagrant:vagrant ~/.octoprint
 git clone https://github.com/foosel/OctoPrint.git
 cd OctoPrint
 virtualenv venv
@@ -56,7 +57,8 @@ timeout 60 octoprint serve
 
 # Enabling virtual printer.
 cd ~/.octoprint
-cat ~/provision/virtual-printer-config.yaml >> config.yaml
+#cat ~/provision/virtual-printer-config.yaml >> config.yaml
+sudo cp /home/vagrant/provision/config.yaml /home/vagrant/.octoprint/config.yaml
 
 # Install Stat'o'matic plugin in dev mode.
 cd ~/octoprint-stat-o-matic && octoprint dev plugin:install

@@ -9,5 +9,6 @@ pip install --upgrade pip
 pip install -e .[develop,plugins]
 cd ..
 cd ..
+octoprint dev plugin:install
 #echo $PWD
 nosetests

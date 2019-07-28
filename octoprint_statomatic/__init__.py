@@ -9,13 +9,55 @@ from __future__ import absolute_import
 #
 # Take a look at the documentation on what other plugin mixins are available.
 
+import os
+
 import octoprint.plugin
+from octoprint.events import Events
+from .statomatic_core import StatomaticCore
 
 
 class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 					   octoprint.plugin.SettingsPlugin,
 					   octoprint.plugin.AssetPlugin,
-					   octoprint.plugin.TemplatePlugin):
+					   octoprint.plugin.TemplatePlugin,
+					   octoprint.plugin.EventHandlerPlugin):
+
+	def __init__(self):
+		self._config = None
+		self._statomatic_core = None
+
+
+	def initialize(self):
+		self._config = {
+			"database": {
+				'sqlite': {
+					'driver': 'sqlite',
+					'database': os.path.join(self.get_plugin_data_folder(), "stat-o-matic.sqlite")
+				}
+			},
+			"database.migrations_path": "./octoprint_statomatic/migrations"
+		}
+
+		self._statomatic_core = StatomaticCore(self._config, self._logger)
+		self._statomatic_core.initialize()
+
+	# print(self._user_manager.enabled)
+	# print (self._user_manager.getAllUsers())
+
+
+	##~~ EventHandlerPlugin mixin
+
+	def on_event(self, event, payload):
+		if event == Events.CONNECTED:
+			connection = self._printer.get_current_connection()
+			self._statomatic_core.event_connected(payload, connection)
+
+		elif event == Events.DISCONNECTED:
+			self._statomatic_core.event_disconnected()
+
+		elif event == Events.ERROR:
+			self._statomatic_core.event_error(payload)
+
 
 	##~~ SettingsPlugin mixin
 
