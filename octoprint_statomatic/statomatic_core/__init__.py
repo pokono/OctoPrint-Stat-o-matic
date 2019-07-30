@@ -23,16 +23,16 @@ class StatomaticCore(object):
 		self._printer_profile = Utils.get_printer_profile(printer_current_connection)
 		self._logger.debug("Printer connected - {pp}.".format(pp=dict(self._printer_profile)))
 		self._database.store_printer(self._printer_profile)
-		pass
 
 	def event_disconnected(self):
 		self._printer_profile = None
 		self._logger.debug("Printer disconnected.")
-		pass
 
 	def event_error(self, payload):
 		# Payload:
 		# error: the error string
 		self._printer_profile = None
 		self._logger.debug("Printer error.")
-		pass
+
+	def event_catch_all(self, event_type):
+		self._database.store_event(event_type)

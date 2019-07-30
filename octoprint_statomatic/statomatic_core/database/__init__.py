@@ -1,6 +1,8 @@
 from orator import DatabaseManager, Model, SoftDeletes
 
 from ...models.printer import Printer
+from ...models.event_type import EventType
+from ...models.event import Event
 
 class Database(object):
 
@@ -22,6 +24,12 @@ class Database(object):
 		printer.name = printer_profile["name"]
 		printer.model = printer_profile["model"]
 		printer.save()
+
+	def store_event(self, event_type):
+		if event_type is not None:
+			type = EventType.first_or_create(event_type=event_type)
+			event = Event.create(event_type=type.event_type)
+
 
 	####################
 	# Utility methods. #

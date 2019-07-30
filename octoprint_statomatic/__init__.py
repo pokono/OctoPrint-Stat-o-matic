@@ -48,6 +48,8 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 	##~~ EventHandlerPlugin mixin
 
 	def on_event(self, event, payload):
+		self._statomatic_core.event_catch_all(event)
+
 		if event == Events.CONNECTED:
 			connection = self._printer.get_current_connection()
 			self._statomatic_core.event_connected(payload, connection)
