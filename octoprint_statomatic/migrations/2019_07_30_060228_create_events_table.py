@@ -11,6 +11,8 @@ class CreateEventsTable(Migration):
 			table.increments("id")
 			table.string("event_type", 50)
 			table.foreign("event_type").references("event_type").on("event_types")
+			table.string("printer_identifier", 255).nullable()
+			table.foreign("printer_identifier").references("identifier").on("printers")
 			table.timestamps()
 
 	def down(self):

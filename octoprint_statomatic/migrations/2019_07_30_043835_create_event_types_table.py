@@ -84,4 +84,4 @@ class CreateEventTypesTable(Migration):
 		"""
 		Revert the migrations.
 		"""
-		self.schema.drop("event_type")
+		self.schema.drop("event_types")
