@@ -1,8 +1,8 @@
-from orator import Model, SoftDeletes
+from orator import Model
 
 
-class Printer(Model, SoftDeletes):
-	__table__ = "printers"
+class Event(Model):
+	__table__ = "events"
 	__primary_key__ = "id"
 	# __dates__ = ['deleted_at']
 	# __fillable__ = ["identifier", "name", "model"]
