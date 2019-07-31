@@ -48,6 +48,7 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 	##~~ EventHandlerPlugin mixin
 
 	def on_event(self, event, payload):
+		# Connection State
 		if event == Events.CONNECTED:
 			connection = self._printer.get_current_connection()
 			self._statomatic_core.event_connected(payload, connection)
@@ -56,7 +57,73 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 			self._statomatic_core.event_disconnected()
 
 		elif event == Events.ERROR:
+			# TODO: Remember to take care of print history here as well.
 			self._statomatic_core.event_error(payload)
+
+		# Prints
+		elif event == Events.PRINT_STARTED:
+			pass
+
+		elif event == Events.PRINT_DONE:
+			pass
+
+		elif event == Events.PRINT_FAILED:
+			pass
+
+		elif event == Events.PRINT_CANCELLING:
+			pass
+
+		elif event == Events.PRINT_CANCELLED:
+			pass
+
+		elif event == Events.PRINT_PAUSED:
+			pass
+
+		elif event == Events.PRINT_RESUMED:
+			pass
+
+		# Print GCODE Events
+		elif event == Events.POWER_ON:
+			pass
+
+		elif event == Events.POWER_OFF:
+			pass
+
+		elif event == Events.HOME:
+			pass
+
+		elif event == Events.Z_CHANGE:
+			pass
+
+		elif event == Events.WAITING:
+			pass
+
+		elif event == Events.DWELL:
+			pass
+
+		elif event == Events.COOLING:
+			pass
+
+		elif event == Events.ALERT:
+			pass
+
+		elif event == Events.CONVEYOR:
+			pass
+
+		elif event == Events.EJECT:
+			pass
+
+		elif event == Events.E_STOP:
+			pass
+
+		elif event == Events.POSITION_UPDATE:
+			pass
+
+		elif event == Events.FIRMWARE_DATA:
+			pass
+
+		elif event == Events.TOOL_CHANGE:
+			pass
 
 		# Catch All!
 		self._statomatic_core.event_catch_all(event)
