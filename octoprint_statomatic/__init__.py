@@ -62,67 +62,88 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 
 		# Prints
 		elif event == Events.PRINT_STARTED:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_DONE:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_FAILED:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_CANCELLING:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_CANCELLED:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_PAUSED:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.PRINT_RESUMED:
+			self.__debug_print_event(event, payload)
 			pass
 
 		# Print GCODE Events
 		elif event == Events.POWER_ON:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.POWER_OFF:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.HOME:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.Z_CHANGE:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.WAITING:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.DWELL:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.COOLING:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.ALERT:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.CONVEYOR:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.EJECT:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.E_STOP:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.POSITION_UPDATE:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.FIRMWARE_DATA:
+			self.__debug_print_event(event, payload)
 			pass
 
 		elif event == Events.TOOL_CHANGE:
+			self.__debug_print_event(event, payload)
 			pass
 
 		# Catch All!
@@ -191,6 +212,15 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 				pip="https://github.com/pokono/OctoPrint-Stat-o-matic/archive/{target_version}.zip"
 			)
 		)
+
+	###################
+	# DEBUG UTILITIES #
+	###################
+	def __debug_print_event(self, event, payload):
+		print("____________________________")
+		print(event)
+		print(payload)
+		print("____________________________")
 
 
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
