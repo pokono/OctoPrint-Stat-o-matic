@@ -1,5 +1,8 @@
 # Stat'o'matic
 
+**Guys, I'm working on this!! It's not ready yet, I hope I will have something solid by the end of the month!.**
+Thanks for stopping by — Ivan.
+
 **TODO:** Describe what your plugin does.
 
 [![Build Status](https://badge.buildkite.com/cb272b15c54e152682f65c8541cc00496361a74793dd8587b2.svg)](https://buildkite.com/pokono/statomatic-tests)
