@@ -1,6 +1,9 @@
 from orator import DatabaseManager, Model, SoftDeletes
+from orator.exceptions.orm import ModelNotFound
 
 from ...models.printer import Printer
+from ...models.event_type import EventType
+from ...models.event import Event
 
 class Database(object):
 
@@ -16,12 +19,27 @@ class Database(object):
 
 	def store_printer(self, printer_profile):
 		if printer_profile is None:
-			return
+			return None
 
 		printer = Printer.first_or_new(identifier=printer_profile["id"])
 		printer.name = printer_profile["name"]
 		printer.model = printer_profile["model"]
 		printer.save()
+		return printer
+
+	def store_event(self, event_type, printer):
+		if event_type is not None:
+			try:
+				type = EventType.where("event_type", "=", event_type).first_or_fail()
+			except ModelNotFound:
+				# Do nothing.
+				print("ModelNotFound exeption")
+				pass
+			else:
+				if printer is not None:
+					Event.create(event_type=type.event_type, printer_identifier=printer.identifier)
+				else:
+					Event.create(event_type=type.event_type)
 
 	####################
 	# Utility methods. #

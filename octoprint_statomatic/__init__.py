@@ -58,6 +58,11 @@ class StatomaticPlugin(octoprint.plugin.StartupPlugin,
 		elif event == Events.ERROR:
 			self._statomatic_core.event_error(payload)
 
+		# Catch All!
+		self._statomatic_core.event_catch_all(event)
+		# Handle disconnect & error.
+		self._statomatic_core.event_handle_printer_disconnect_and_error(event)
+
 
 	##~~ SettingsPlugin mixin
 
